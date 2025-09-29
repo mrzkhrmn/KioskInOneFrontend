@@ -3,6 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { exec } from 'child_process'
 import icon from '../../resources/icon.png?asset'
+import { autoUpdater } from 'electron-updater'
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -104,6 +105,10 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+})
+
+app.on('ready', () => {
+  autoUpdater.checkForUpdatesAndNotify()
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
