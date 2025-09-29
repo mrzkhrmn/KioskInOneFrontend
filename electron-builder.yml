@@ -1,7 +1,8 @@
-appId: com.electron.app
+appId: com.kuh.kioskinone
 productName: KioskInOne
 directories:
   buildResources: build
+  output: dist
 files:
   - '!**/.vscode/*'
   - '!src/*'
@@ -11,12 +12,30 @@ files:
 asarUnpack:
   - resources/**
 win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
   executableName: KioskInOne
+  icon: build/icon.ico
 nsis:
-  artifactName: ${name}-${version}-setup.${ext}
-  shortcutName: ${productName}
-  uninstallDisplayName: ${productName}
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
   createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: KioskInOne
+  uninstallDisplayName: KioskInOne
+  license: null
+  include: null
+  script: null
+  deleteAppDataOnUninstall: false
+  runAfterFinish: true
+  menuCategory: true
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -38,5 +57,6 @@ appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
 publish:
-  provider: generic
-  url: https://example.com/auto-updates
+  provider: github
+  owner: mrzkhrmn
+  repo: koc-kiosk-app

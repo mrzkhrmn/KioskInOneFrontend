@@ -5,6 +5,22 @@ import { exec } from 'child_process'
 import icon from '../../resources/icon.png?asset'
 import { autoUpdater } from 'electron-updater'
 
+if (!is.dev) {
+  autoUpdater.checkForUpdatesAndNotify()
+
+  autoUpdater.on('update-available', () => {
+    console.log('Güncelleme mevcut')
+  })
+
+  autoUpdater.on('update-downloaded', () => {
+    console.log('Güncelleme indirildi')
+    autoUpdater.quitAndInstall()
+  })
+}
+
+autoUpdater.autoDownload = false
+autoUpdater.autoInstallOnAppQuit = true
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1080,
@@ -108,7 +124,9 @@ app.whenReady().then(() => {
 })
 
 app.on('ready', () => {
-  autoUpdater.checkForUpdatesAndNotify()
+  if (!is.dev) {
+    autoUpdater.checkForUpdatesAndNotify()
+  }
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
