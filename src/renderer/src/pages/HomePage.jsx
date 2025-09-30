@@ -19,7 +19,7 @@ const HomePage = () => {
             className=" h-[70px] text-[32px] text-gray-700 flex items-center justify-center  border-none active:scale-95  tracking-wide bg-white/95  rounded-xl shadow-md cursor-pointer transition-all duration-200 ease-in-out backdrop-blur-md hover:bg-white hover:shadow-lg"
             to="/verify-id-or-passport"
           >
-            - Randevu Al -
+            Randevu Al
           </Link>
 
           <Link
