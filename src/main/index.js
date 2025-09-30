@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { exec } from 'child_process'
@@ -136,7 +136,9 @@ function setupAutoUpdater() {
       if (mainWindow && !mainWindow.isDestroyed()) {
         mainWindow.webContents.send('update-status', { type, payload })
       }
-    } catch (_) {}
+    } catch (error) {
+      console.warn('update-status gönderilemedi:', error)
+    }
   }
 
   autoUpdater.on('checking-for-update', () => send('checking-for-update'))
@@ -144,12 +146,37 @@ function setupAutoUpdater() {
   autoUpdater.on('update-not-available', (info) => send('update-not-available', info))
   autoUpdater.on('error', (err) => send('error', err?.stack || String(err)))
   autoUpdater.on('download-progress', (progress) => send('download-progress', progress))
-  autoUpdater.on('update-downloaded', () => {
-    send('update-downloaded')
-    setImmediate(() => {
-      // İndirilen güncellemeyi hemen uygula ve yeniden başlat
-      autoUpdater.quitAndInstall()
-    })
+  autoUpdater.on('update-downloaded', async (info) => {
+    send('update-downloaded', info)
+    try {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        const result = await dialog.showMessageBox(mainWindow, {
+          type: 'question',
+          buttons: ['Evet', 'Hayır'],
+          defaultId: 0,
+          cancelId: 1,
+          title: 'Güncelleme hazır',
+          message:
+            'Yeni bir sürüm indirildi. Şimdi uygulamayı yeniden başlatıp güncellemek ister misiniz?',
+          detail: `Mevcut sürüm: ${app.getVersion()}\nYeni sürüm: ${info?.version || ''}`
+        })
+
+        if (result.response === 0) {
+          setImmediate(() => {
+            autoUpdater.quitAndInstall()
+          })
+        } else {
+          send('update-postponed')
+        }
+      } else {
+        // Pencere yoksa doğrudan uygula (arka planda kurulum)
+        setImmediate(() => {
+          autoUpdater.quitAndInstall()
+        })
+      }
+    } catch (err) {
+      send('error', err?.stack || String(err))
+    }
   })
 
   // Başlangıçta kontrol et
