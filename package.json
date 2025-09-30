@@ -7,7 +7,7 @@
   "homepage": "https://electron-vite.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mrzkhrmn/koc-kiosk-app.git"
+    "url": "https://github.com/mrzkhrmn/KioskInOne.git"
   },
   "scripts": {
     "format": "prettier --write .",
@@ -73,7 +73,7 @@
       {
         "provider": "github",
         "owner": "mrzkhrmn",
-        "repo": "koc-kiosk-app",
+        "repo": "KioskInOne",
         "releaseType": "release"
       }
     ]

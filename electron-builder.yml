@@ -59,4 +59,5 @@ npmRebuild: false
 publish:
   provider: github
   owner: mrzkhrmn
-  repo: koc-kiosk-app
+  repo: KioskInOne
+  releaseType: release

@@ -24,6 +24,7 @@ function App() {
       >
         <source src={kioskBackVideo} type="video/mp4" />
       </video>
+
       {isLanguageSelectionModalOpen && (
         <LanguageSelectionModal
           isOpen={isLanguageSelectionModalOpen}

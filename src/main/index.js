@@ -5,24 +5,10 @@ import { exec } from 'child_process'
 import icon from '../../resources/icon.png?asset'
 import { autoUpdater } from 'electron-updater'
 
-if (!is.dev) {
-  autoUpdater.checkForUpdatesAndNotify()
-
-  autoUpdater.on('update-available', () => {
-    console.log('Güncelleme mevcut')
-  })
-
-  autoUpdater.on('update-downloaded', () => {
-    console.log('Güncelleme indirildi')
-    autoUpdater.quitAndInstall()
-  })
-}
-
-autoUpdater.autoDownload = false
-autoUpdater.autoInstallOnAppQuit = true
+let mainWindow
 
 function createWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1080,
     height: 1920,
     kiosk: true,
@@ -33,7 +19,7 @@ function createWindow() {
       sandbox: false,
       nodeIntegration: false,
       contextIsolation: true,
-      webSecurity: false, // Bu önemli - web güvenliğini devre dışı bırak
+      webSecurity: false,
       allowRunningInsecureContent: true,
       experimentalFeatures: true
     }
@@ -48,13 +34,13 @@ function createWindow() {
     return { action: 'deny' }
   })
 
-  // HMR for renderer base on electron-vite cli.
-  // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  return mainWindow
 }
 
 // This method will be called when Electron has finished
@@ -116,17 +102,15 @@ app.whenReady().then(() => {
 
   createWindow()
 
+  if (!is.dev) {
+    setupAutoUpdater()
+  }
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
-})
-
-app.on('ready', () => {
-  if (!is.dev) {
-    autoUpdater.checkForUpdatesAndNotify()
-  }
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -140,3 +124,42 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// EKLENECEK: autoUpdater kurulum fonksiyonu
+function setupAutoUpdater() {
+  // Otomatik indirmeyi aç
+  autoUpdater.autoDownload = true
+  autoUpdater.allowDowngrade = false
+
+  const send = (type, payload) => {
+    try {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('update-status', { type, payload })
+      }
+    } catch (_) {}
+  }
+
+  autoUpdater.on('checking-for-update', () => send('checking-for-update'))
+  autoUpdater.on('update-available', (info) => send('update-available', info))
+  autoUpdater.on('update-not-available', (info) => send('update-not-available', info))
+  autoUpdater.on('error', (err) => send('error', err?.stack || String(err)))
+  autoUpdater.on('download-progress', (progress) => send('download-progress', progress))
+  autoUpdater.on('update-downloaded', () => {
+    send('update-downloaded')
+    setImmediate(() => {
+      // İndirilen güncellemeyi hemen uygula ve yeniden başlat
+      autoUpdater.quitAndInstall()
+    })
+  })
+
+  // Başlangıçta kontrol et
+  autoUpdater.checkForUpdates()
+
+  // Periyodik olarak kontrol (örn. her saat)
+  setInterval(
+    () => {
+      autoUpdater.checkForUpdates()
+    },
+    60 * 60 * 1000
+  )
+}
