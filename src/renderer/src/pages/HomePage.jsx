@@ -6,7 +6,7 @@ const HomePage = () => {
       <div className="flex-1 items-center justify-center flex flex-col gap-20">
         <div className="flex flex-col gap-10  justify-center ">
           <h1 style={{ fontWeight: 700 }} className="text-5xl text-center text-white">
-            Eve hayir deneme
+            Windows Güncelleme Deneme
           </h1>
           <p style={{ fontWeight: 700 }} className="text-4xl text-center text-white">
             Lütfen yapmak istediğiniz işlemi seçiniz:
