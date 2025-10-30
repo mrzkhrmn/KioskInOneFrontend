@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import GoBackIcon from '../../assets/icons/arrow-left.png'
 import VerifyFrontside from '../../components/IdVerification/VerifyFrontside'
 import { useState } from 'react'
 import VerifyBackside from '../../components/IdVerification/VerifyBackside'
+import NavigationButtons from '../common/NavigationButtons'
 
 const VerifyIdOrPassport = () => {
   const [isFrontVerified, setIsFrontVerified] = useState(false)
@@ -36,10 +36,7 @@ const VerifyIdOrPassport = () => {
             </div>
           </div>
           <div className="flex w-full justify-start items-end pb-10">
-            <button onClick={() => navigate(-1)} className="flex flex-col items-center gap-2">
-              <img src={GoBackIcon} alt="GoBackIcon" />
-              <span className=" text-[32px] text-white">Geri</span>
-            </button>
+            <NavigationButtons isHome={false} isLogout={false} />
           </div>
         </div>
       ) : isFrontVerified ? (

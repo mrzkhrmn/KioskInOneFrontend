@@ -23,6 +23,24 @@
   --ev-button-alt-hover-bg: var(--ev-c-gray-2);
 }
 
+::-webkit-scrollbar {
+  width: 24px;
+}
+::-webkit-scrollbar-track {
+  background: #d9d9d9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aa182c;
+  height: 24px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #8a1423;
+}
+
 :root {
   --color-background: transparent;
   --color-background-soft: var(--ev-c-black-soft);

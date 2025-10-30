@@ -33,10 +33,6 @@ code {
   font-size: 85%;
 }
 
-#root {
-  /* Kiosk layout için flex kaldırıldı */
-}
-
 .logo {
   margin-bottom: 20px;
   -webkit-user-drag: none;

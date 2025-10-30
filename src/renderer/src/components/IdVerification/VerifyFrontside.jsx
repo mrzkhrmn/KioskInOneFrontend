@@ -1,6 +1,5 @@
 import EmptyImage from '../../assets/images/empty-image.png'
-import ExitButton from '../common/ExitButton'
-import BackButton from '../common/BackButton'
+import NavigationButtons from '../common/NavigationButtons'
 
 const VerifyFrontside = ({ setIsFrontVerified, idType, onGoBack }) => {
   return (
@@ -22,10 +21,7 @@ const VerifyFrontside = ({ setIsFrontVerified, idType, onGoBack }) => {
           Devam
         </button>
       </div>
-      <div className="flex w-screen justify-start items-end pb-10 gap-10 px-10">
-        <BackButton />
-        <ExitButton />
-      </div>
+      <NavigationButtons isHome={false} />
     </div>
   )
 }
