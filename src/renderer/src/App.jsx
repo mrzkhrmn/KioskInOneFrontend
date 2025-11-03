@@ -27,24 +27,25 @@ function App() {
           <source src={kioskBackVideo} type="video/mp4" />
         </video>
 
-      {isLanguageSelectionModalOpen && (
-        <LanguageSelectionModal
-          isOpen={isLanguageSelectionModalOpen}
-          onClose={setIsLanguageSelectionModalOpen}
-        />
-      )}
-      <Header onLanguageSelectionModalOpen={setIsLanguageSelectionModalOpen} />
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/appointment" element={<AppointmentPage />} />
-          <Route path="/new-appointment" element={<NewAppointmentPage />} />
-          <Route path="/new-patient" element={<NewPatientRegistrationPage />} />
-          <Route path="/appointment-accept" element={<AppointmentAccept />} />
-          <Route path="/verify-id-or-passport" element={<VerifyIdOrPassportPage />} />
-        </Routes>
-      </Router>
-    </div>
+        {isLanguageSelectionModalOpen && (
+          <LanguageSelectionModal
+            isOpen={isLanguageSelectionModalOpen}
+            onClose={setIsLanguageSelectionModalOpen}
+          />
+        )}
+        <Header onLanguageSelectionModalOpen={setIsLanguageSelectionModalOpen} />
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/appointment" element={<AppointmentPage />} />
+            <Route path="/new-appointment" element={<NewAppointmentPage />} />
+            <Route path="/new-patient" element={<NewPatientRegistrationPage />} />
+            <Route path="/appointment-accept" element={<AppointmentAccept />} />
+            <Route path="/verify-id-or-passport" element={<VerifyIdOrPassportPage />} />
+          </Routes>
+        </Router>
+      </div>
+    </Provider>
   )
 }
 
