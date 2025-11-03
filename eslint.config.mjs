@@ -24,7 +24,9 @@ export default [
     },
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
-      ...eslintPluginReactRefresh.configs.vite.rules
+      ...eslintPluginReactRefresh.configs.vite.rules,
+      'react/prop-types': 'off',
+      'prettier/prettier': 'off'
     }
   },
   eslintConfigPrettier

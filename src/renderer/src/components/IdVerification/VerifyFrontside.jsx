@@ -1,8 +1,23 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import EmptyImage from '../../assets/images/empty-image.png'
 import ExitButton from '../common/ExitButton'
 import BackButton from '../common/BackButton'
+import { useStartContinuousReadingMutation } from '../../services/nfcReaderApi'
 
 const VerifyFrontside = ({ setIsFrontVerified, idType, onGoBack }) => {
+  const navigate = useNavigate()
+  const [startContinuousReading] = useStartContinuousReadingMutation()
+
+  useEffect(() => {
+    startContinuousReading().then((res) => {
+      console.log(res)
+      if (res?.data?.success === true) {
+        navigate('/new-patient')
+      }
+    })
+  }, [])
+
   return (
     <div className="flex flex-col h-screen justify-between">
       <div className="flex-1 flex flex-col gap-32 items-center justify-center">

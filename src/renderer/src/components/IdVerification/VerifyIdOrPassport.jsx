@@ -42,8 +42,6 @@ const VerifyIdOrPassport = () => {
             </button>
           </div>
         </div>
-      ) : isFrontVerified ? (
-        <VerifyBackside idType={selectedIdType} onGoBack={() => setIsFrontVerified(false)} />
       ) : (
         <VerifyFrontside
           setIsFrontVerified={setIsFrontVerified}
