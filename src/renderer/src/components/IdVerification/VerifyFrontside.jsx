@@ -37,10 +37,7 @@ const VerifyFrontside = ({ setIsFrontVerified, idType, onGoBack }) => {
           Devam
         </button>
       </div>
-      <div className="flex w-screen justify-start items-end pb-10 gap-10 px-10">
-        <BackButton />
-        <ExitButton />
-      </div>
+      <NavigationButtons isHome={false} />
     </div>
   )
 }

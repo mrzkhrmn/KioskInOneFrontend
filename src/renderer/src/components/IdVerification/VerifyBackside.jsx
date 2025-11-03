@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import EmptyImage from '../../assets/images/empty-image.png'
 import { useState } from 'react'
-import BackButton from '../common/BackButton'
-import ExitButton from '../common/ExitButton'
+import NavigationButtons from '../common/NavigationButtons'
 
 const VerifyBackside = ({ idType, onGoBack }) => {
   const [idVerified, setIdVerified] = useState(true)
@@ -26,10 +25,7 @@ const VerifyBackside = ({ idType, onGoBack }) => {
           Devam
         </button>
       </div>
-      <div className="flex w-screen justify-start items-end pb-10 gap-10 px-10">
-        <BackButton />
-        <ExitButton />
-      </div>
+      <NavigationButtons isHome={false} />
     </div>
   ) : (
     <div className="flex flex-col h-screen justify-between items-center">
@@ -60,10 +56,6 @@ const VerifyBackside = ({ idType, onGoBack }) => {
             </Link>
           </div>
         </div>
-      </div>
-      <div className="flex  w-screen justify-start  items-end pb-10  gap-10 px-10">
-        <BackButton />
-        <ExitButton />
       </div>
     </div>
   )

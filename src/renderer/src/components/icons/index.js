@@ -1,0 +1,8 @@
+export { default as MuayeneIcon } from './MuayeneIcon'
+export { default as HospitalIcon } from './HospitalIcon'
+export { default as CalendarIcon } from './CalendarIcon'
+export { default as ClockIcon } from './ClockIcon'
+export { default as GuardIcon } from './GuardIcon'
+export { default as HomeIcon } from './HomeIcon'
+export { default as ArrowLeftIcon } from './ArrowLeftIcon'
+export { default as LogoutIcon } from './LogoutIcon'

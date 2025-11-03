@@ -1,10 +1,20 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import AHLogo from '../assets/images/ah-logo.png'
+import DoctorProfileImage from '../assets/images/doctor.png'
+import {
+  HospitalIcon,
+  MuayeneIcon,
+  CalendarIcon,
+  ClockIcon,
+  GuardIcon,
+  HomeIcon
+} from '../components/icons'
 import AHBLogo from '../assets/images/ah-bodrum-logo.png'
 import KUHLogo from '../assets/images/kuh-logo.png'
 import ATMLogo from '../assets/images/atm-logo.png'
 import KSYLogo from '../assets/images/ksy-logo.png'
+import NavigationButtons from '../components/common/NavigationButtons'
 
 const AppointmentPage = () => {
   const navigate = useNavigate()
@@ -17,80 +27,81 @@ const AppointmentPage = () => {
   }, [user, navigate])
 
   return (
-    <div className="flex flex-col items-center py-10  h-[93vh] w-screen">
-      <h1 style={{ fontWeight: 700 }} className="text-5xl text-white">
-        Randevu Al
-      </h1>
-      <div className="flex flex-col items-center justify-center h-full gap-20">
-        <div className="flex flex-col items-center justify-center gap-8">
-          <h1 style={{ fontWeight: 700 }} className="text-5xl text-white">
-            Sayın Ahmet Örnekadam
-          </h1>
-          <h2 style={{ fontWeight: 700 }} className="text-4xl text-white">
-            Hastane seçiniz:
-          </h2>
+    <div className="flex flex-col  py-24  h-[90vh] w-screen">
+      <h2 style={{ fontWeight: 700 }} className="text-5xl text-white text-center">
+        Kayıtlı Randevular
+      </h2>
+      <button className="bg-primary text-[32px] self-center font-bold px-12 py-3 rounded-2xl text-white mt-14">
+        Yeni Randevu Al
+      </button>
+
+      <div className="flex flex-col items-center justify-center">
+        <h1 className=" text-5xl text-white font-bold mt-24">Sayın Ahmet Örnekadam</h1>
+        <h2 className=" text-4xl text-white font-bold mt-10">
+          Kayıtlı randevularınızla ilgili işlem yapabilirsiniz:
+        </h2>
+        <div className="overflow-y-auto max-h-[970px]  mt-20 pr-4">
+          <div className="space-y-8">
+            <AppointmentCard />
+            <AppointmentCard />
+            <AppointmentCard />
+            <AppointmentCard />
+          </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-12">
-          <div className="flex  items-center justify-center relative gap-4 z-10 h-[70px]  ">
-            <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
-              <img src={AHLogo} alt="AmerikanLogo" />
-            </div>
-            <div className="bg-white w-full h-[10px] absolute bottom-0 z-0 rounded-b-2xl "></div>
-            <p
-              className="text-black text-3xl bg-white w-[540px] text-center py-2.5 rounded-t-2xl rounded-b-xl relative z-10 h-full flex items-center justify-center"
-              style={{ fontWeight: 700 }}
-            >
-              Amerikan Hastanesi
-            </p>
+      </div>
+      <NavigationButtons />
+    </div>
+  )
+}
+
+const AppointmentCard = () => {
+  return (
+    <div className=" bg-white p-8 rounded-xl ">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <img src={DoctorProfileImage} alt="DoktorImage" className="object-center w-24 h-24" />
+          <div className="text-black">
+            <p className="text-3xl">Dyt. Aleyna Turan</p>
+            <p className="text-3xl">Amerikan Hastanesi</p>
           </div>
-          <div className="flex  items-center justify-center relative gap-4 z-10 h-[70px]">
-            <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
-              <img src={ATMLogo} alt="AmerikanLogo" />
-            </div>
-            <div className="bg-white w-full h-[10px] absolute bottom-0 z-0 rounded-b-2xl "></div>
-            <p
-              className="text-black text-3xl bg-white w-[540px] text-center py-2.5 rounded-t-2xl rounded-b-xl relative z-10 h-full flex items-center justify-center"
-              style={{ fontWeight: 700 }}
-            >
-              Amerikan Tıp Merkezi
-            </p>
+        </div>
+
+        <img src={AHLogo} alt="Amerikan Hastanesi" />
+      </div>
+
+      <div className="flex  gap-40 mt-8">
+        <div className="flex flex-col gap-4 ">
+          <div className="flex items-center gap-4">
+            <MuayeneIcon width={32} height={32} />
+            <p className="text-black text-[28px]">Muayene</p>
           </div>
-          <div className="flex  items-center justify-center relative gap-4 z-10 h-[70px]">
-            <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
-              <img src={KUHLogo} alt="AmerikanLogo" />
-            </div>
-            <div className="bg-white w-full h-[10px] absolute bottom-0 z-0 rounded-b-2xl "></div>
-            <p
-              className="text-black text-3xl bg-white w-[540px] text-center py-2.5 rounded-t-2xl rounded-b-xl relative z-10 h-full flex items-center justify-center"
-              style={{ fontWeight: 700 }}
-            >
-              Koç Üniversitesi Hastanesi
-            </p>
+          <div className="flex items-center gap-4">
+            <HospitalIcon />
+            <p className="text-black text-[28px]">Beslenme ve Diyet</p>
           </div>
-          <div className="flex  items-center justify-center relative gap-4 z-10 h-[70px]">
-            <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
-              <img src={AHBLogo} alt="AmerikanLogo" />
-            </div>
-            <div className="bg-white w-full h-[10px] absolute bottom-0 z-0 rounded-b-2xl "></div>
-            <p
-              className="text-black text-3xl bg-white w-[540px] text-center py-2.5 rounded-t-2xl rounded-b-xl relative z-10 h-full flex items-center justify-center"
-              style={{ fontWeight: 700 }}
-            >
-              Bodrum Amerikan Hastanesi
-            </p>
+          <div className="flex items-center gap-4">
+            <CalendarIcon />
+            <p className="text-black text-[28px]">16.04.2025</p>
           </div>
-          <div className="flex  items-center justify-center relative gap-4 z-10 h-[70px]">
-            <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
-              <img src={KSYLogo} alt="AmerikanLogo" />
-            </div>
-            <div className="bg-white w-full h-[10px] absolute bottom-0 z-0 rounded-b-2xl "></div>
-            <p
-              className="text-black text-3xl bg-white w-[540px] text-center py-2.5 rounded-t-2xl rounded-b-xl relative z-10 h-full flex items-center justify-center"
-              style={{ fontWeight: 700 }}
-            >
-              Koç Sağlık Yanımda
-            </p>
+          <div className="flex items-center gap-4">
+            <ClockIcon />
+            <p className="text-black text-[28px]">16:00</p>
           </div>
+          <div className="flex items-center gap-4">
+            <GuardIcon />
+            <p className="text-black text-[28px]">Sigorta Yok</p>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between">
+          <button className="bg-primary text-3xl text-white font-bold py-4 border border-primary  px-10 rounded-2xl shadow-xl">
+            Randevumu Onayla
+          </button>
+          <button className="bg-[#D9D9D9] text-3xl text-black font-bold border border-black/50 py-4 px-10 rounded-2xl shadow-xl">
+            Ödeme
+          </button>
+          <button className="bg-[#D9D9D9] text-3xl text-black font-bold border border-black/50 py-4 px-10 rounded-2xl shadow-xl">
+            İptal Et
+          </button>
         </div>
       </div>
     </div>

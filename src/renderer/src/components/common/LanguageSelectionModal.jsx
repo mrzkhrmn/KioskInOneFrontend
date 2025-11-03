@@ -21,7 +21,7 @@ const LanguageSelectionModal = ({ onClose }) => {
         <div className="flex flex-col gap-4">
           <button
             onClick={() => onClose(true)}
-            className="bg-white border-2 text-black border-black hover:bg-blue-500 hover:text-white py-4 flex items-center gap-4  justify-center px-6 rounded-lg text-2xl font-semibold transition-all duration-200 transform hover:scale-105"
+            className="bg-white border-2 text-black border-black py-4 flex items-center gap-4  justify-center px-6 rounded-lg text-2xl font-semibold"
           >
             <img src={TurkeyFlag} alt="TurkeyFlag" className="w-14" />
             <p className="text-2xl" style={{ fontWeight: 700 }}>
@@ -30,17 +30,17 @@ const LanguageSelectionModal = ({ onClose }) => {
           </button>
           <button
             onClick={() => onClose(false)}
-            className="bg-white border-2 border-black text-black flex items-center gap-4  justify-center hover:bg-red-500 hover:text-white py-4 px-6 rounded-lg text-lg font-semibold transition-all duration-200 transform hover:scale-105"
+            className="bg-white border-2 border-black text-black flex items-center gap-4  justify-center py-4 px-6 rounded-lg text-lg font-semibold"
           >
             <img src={TurkeyFlag} alt="TurkeyFlag" className="w-14" />
             <p className="text-2xl" style={{ fontWeight: 700 }}>
-              Ingilizce
+              İngilizce
             </p>
           </button>
         </div>
         <button
           onClick={() => onClose(false)}
-          className=" w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-lg text-2xl transition-colors duration-200"
+          className=" w-full bg-primary py-3 px-4 rounded-lg text-3xl text-white font-semibold"
           style={{ marginTop: '20px' }}
         >
           Kapat
