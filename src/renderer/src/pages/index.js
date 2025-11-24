@@ -1,0 +1,8 @@
+export { default as HomePage } from './HomePage'
+export { default as InsuranceSelectionPage } from './InsuranceSelectionPage'
+export { default as AppointmentPage } from './AppointmentPage'
+export { default as NewPatientRegistrationPage } from './NewPatientRegistrationPage'
+export { default as AppointmentAccept } from './AppointmentAccept'
+export { default as VerifyIdOrPassportPage } from './VerifyIdOrPassportPage'
+export { default as ScanIdPage } from './ScanIdPage'
+export { default as NewAppointmentPage } from './Appointment/NewAppointmentPage'

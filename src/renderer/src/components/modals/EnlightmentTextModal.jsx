@@ -16,7 +16,7 @@ const EnlightmentTextModal = ({ onClose }) => {
       className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white w-[975px] rounded-2xl shadow-2xl text-black px-10 py-12">
+      <div className="bg-white w-[984px] rounded-2xl shadow-2xl text-black px-6 py-10 ">
         <h1
           className="text-3xl font-bold text-center  text-gray-800"
           style={{ marginBottom: '20px' }}
@@ -100,7 +100,7 @@ const ContactCheckbox = ({ isChecked, text, value, onChange }) => {
         onChange={onChange}
         checked={isChecked}
         type="checkbox"
-        className="w-16 h-16 appearance-none border-2 border-gray-300 rounded-2xl checked:bg-[#AA182C] checked:border-[#AA182C] focus:outline-none focus:ring-0 cursor-pointer"
+        className="w-16 h-16 appearance-none border-2 border-gray-300 rounded-2xl checked:bg-primary checked:border-primary focus:outline-none focus:ring-0 cursor-pointer"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3csvg viewBox='3 3 10 10' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e")`,
           backgroundSize: '70%',

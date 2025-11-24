@@ -1,7 +1,6 @@
-import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, shell, BrowserWindow, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { exec } from 'child_process'
 import icon from '../../resources/icon.png?asset'
 import { autoUpdater } from 'electron-updater'
 
@@ -24,7 +23,7 @@ function createWindow() {
       sandbox: false,
       nodeIntegration: false,
       contextIsolation: true,
-      webSecurity: false,
+      webSecurity: true,
       allowRunningInsecureContent: true,
       experimentalFeatures: true
     }
@@ -73,7 +72,6 @@ app.on('window-all-closed', () => {
 })
 
 function setupAutoUpdater() {
-  // Otomatik indirmeyi aç
   autoUpdater.autoDownload = true
   autoUpdater.allowDowngrade = false
 

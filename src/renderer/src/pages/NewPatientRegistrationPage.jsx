@@ -31,7 +31,7 @@ const NewPatientRegistrationPage = () => {
           </div>
           <button
             style={{ fontWeight: 700 }}
-            className="bg-[#AA182C] w-[370px] rounded-2xl h-[70px] text-white text-[32px] shadow-lg"
+            className="bg-primary w-[370px] rounded-2xl h-[70px] text-white text-[32px] shadow-lg"
             onClick={() => setNfcVerified(true)}
           >
             Devam
@@ -82,13 +82,13 @@ const NewPatientRegistrationPage = () => {
                   placeholder="E-posta"
                   type="email"
                   id="email"
-                  className="bg-[#AA182C33] w-full px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
+                  className="bg-primary/20 w-full px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
                 />
                 <input
                   placeholder="Cep Telefonu"
                   type="tel"
                   id="fatherName"
-                  className="bg-[#AA182C33] w-full px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
+                  className="bg-primary/20 w-full px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
                 />
               </div>
               <div className="w-[360px] flex flex-col gap-6">
@@ -126,14 +126,14 @@ const NewPatientRegistrationPage = () => {
                   placeholder="Araç Plaka"
                   type="text"
                   id="plate"
-                  className="bg-[#AA182C33] w-full px-4 py-2.5 placeholder:text-black/50 rounded-2xl text-black"
+                  className="bg-primary/20 w-full px-4 py-2.5 placeholder:text-black/50 rounded-2xl text-black"
                 />
               </div>
             </div>
             <button
               style={{ marginTop: '56px', fontWeight: 700 }}
               type="submit"
-              className="bg-[#AA182C] text-white text-[32px] rounded-2xl px-32 py-2 cursor-pointer"
+              className="bg-primary text-white text-[32px] rounded-2xl px-32 py-2 cursor-pointer"
               onClick={handleSubmit}
             >
               Onayla ve Devam Et
@@ -168,7 +168,7 @@ const NewPatientRegistrationPage = () => {
               <span className="text-[32px] text-gray-400">_</span>
             </div>
             <button
-              className="bg-[#AA182C] text-white text-[32px] rounded-2xl px-32 py-2 cursor-pointer"
+              className="bg-primary text-white text-[32px] rounded-2xl px-32 py-2 cursor-pointer"
               style={{ fontWeight: 700 }}
               onClick={() => navigate('/new-appointment')}
             >

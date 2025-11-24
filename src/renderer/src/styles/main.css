@@ -8,7 +8,6 @@ body {
   user-select: none;
 }
 
-/* Ensure react-simple-keyboard key labels are visible */
 .hg-theme-default .hg-button {
   color: #000 !important;
 }

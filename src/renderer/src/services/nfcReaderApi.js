@@ -1,9 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-// Base URL - https://localhost:7285
 const baseUrl = 'http://localhost:5185'
 
-// Custom baseQuery - SSL sertifika doğrulamasını bypass et (development için)
 const baseQuery = fetchBaseQuery({
   baseUrl,
   prepareHeaders: (headers) => {
@@ -12,28 +10,23 @@ const baseQuery = fetchBaseQuery({
   }
 })
 
-// SSL hatası için retry logic
 const baseQueryWithRetry = async (args, api, extraOptions) => {
   try {
     const result = await baseQuery(args, api, extraOptions)
     return result
   } catch (error) {
-    // SSL sertifika hatası durumunda
     if (error?.message?.includes('certificate') || error?.message?.includes('SSL')) {
       console.warn('SSL sertifika hatası, tekrar deneniyor...')
-      // Electron'da SSL doğrulaması main process'te bypass edilmeli
     }
     throw error
   }
 }
 
-// NFC Reader API servisi
 export const nfcReaderApi = createApi({
   reducerPath: 'nfcReaderApi',
   baseQuery: baseQueryWithRetry,
   tagTypes: ['NFCCard', 'NFCDevice'],
   endpoints: (builder) => ({
-    // NFC cihazını başlat
     initializeDevice: builder.mutation({
       query: (deviceId) => ({
         url: '/api/nfc/initialize',
@@ -43,7 +36,6 @@ export const nfcReaderApi = createApi({
       invalidatesTags: ['NFCDevice']
     }),
 
-    // NFC cihazını durdur
     stopDevice: builder.mutation({
       query: (deviceId) => ({
         url: '/api/nfc/stop',
@@ -53,7 +45,6 @@ export const nfcReaderApi = createApi({
       invalidatesTags: ['NFCDevice']
     }),
 
-    // NFC kart okuma
     readCard: builder.mutation({
       query: (params = {}) => ({
         url: '/api/nfc/read',
@@ -76,7 +67,6 @@ export const nfcReaderApi = createApi({
       invalidatesTags: ['NFCCard', 'NFCDevice']
     }),
 
-    // NFC kart okumayı durdur
     stopCardReading: builder.mutation({
       query: () => ({
         url: '/api/nfc/stop-reading',
@@ -85,25 +75,21 @@ export const nfcReaderApi = createApi({
       invalidatesTags: ['NFCCard', 'NFCDevice']
     }),
 
-    // NFC cihaz durumunu kontrol et
     getDeviceStatus: builder.query({
       query: (deviceId) => `/api/nfc/status/${deviceId || ''}`,
       providesTags: ['NFCDevice']
     }),
 
-    // Okunan kart bilgilerini al
     getCardData: builder.query({
       query: (cardId) => `/api/nfc/card/${cardId || ''}`,
       providesTags: ['NFCCard']
     }),
 
-    // Mevcut cihazları listele
     getDevices: builder.query({
       query: () => '/api/nfc/devices',
       providesTags: ['NFCDevice']
     }),
 
-    // Kart doğrulama
     verifyCard: builder.mutation({
       query: (cardData) => ({
         url: '/api/nfc/verify',
@@ -113,7 +99,6 @@ export const nfcReaderApi = createApi({
       invalidatesTags: ['NFCCard']
     }),
 
-    // Kart yazma
     writeCard: builder.mutation({
       query: (cardData) => ({
         url: '/api/nfc/write',
@@ -125,7 +110,6 @@ export const nfcReaderApi = createApi({
   })
 })
 
-// Hooks'ları export et
 export const {
   useInitializeDeviceMutation,
   useStopDeviceMutation,
