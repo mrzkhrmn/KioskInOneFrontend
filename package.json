@@ -50,35 +50,6 @@
     "vite": "^6.2.6"
   },
   "build": {
-    "appId": "com.kuh.kioskinone",
-    "productName": "KioskInOne",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "out/**/*",
-      "resources/**/*"
-    ],
-    "win": {
-      "target": "nsis",
-      "icon": "build/icon.ico",
-      "signAndEditExecutable": false
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowElevation": true,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "runAfterFinish": true
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "mrzkhrmn",
-        "repo": "KioskInOne",
-        "releaseType": "release"
-      }
-    ]
+    "extends": null
   }
 }
