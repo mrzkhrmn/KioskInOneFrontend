@@ -1,0 +1,19 @@
+{
+  "title": "ID Scanning",
+  "scanning": "Scanning...",
+  "scanComplete": "Scan Complete",
+  "instruction": "Please place your {documentLabel} on the reader with the {stepAction} facing down.",
+  "documents": {
+    "tcCard": "Turkish ID card",
+    "passport": "passport"
+  },
+  "steps": {
+    "front": "front side",
+    "back": "back side",
+    "entryDate": "entry date field"
+  },
+  "buttons": {
+    "continue": "Continue",
+    "complete": "Complete"
+  }
+}

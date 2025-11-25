@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavigationButtons from '../components/common/NavigationButtons'
+import useTranslation from '../hooks/useTranslation'
+import homeTr from '../locales/tr/home.json'
+import homeEn from '../locales/en/home.json'
 
 const HomePage = () => {
   const user = useSelector((state) => state.user.user)
   const navigate = useNavigate()
+  const translate = useTranslation({ tr: homeTr, en: homeEn })
 
   const handleButtonClick = (path) => {
     if (!user) {
@@ -21,41 +25,41 @@ const HomePage = () => {
           {user ? (
             <>
               <h1 style={{ fontWeight: 700 }} className="text-5xl text-center text-white">
-                Hoş Geldiniz
+                {translate('welcome')}
               </h1>
               <h1 style={{ fontWeight: 700 }} className="text-5xl text-center text-white">
                 {user.patientName} {user.patientSurname}
               </h1>
               <p style={{ fontWeight: 700 }} className="text-4xl text-center text-white">
-                Lütfen yapmak istediğiniz işlemi seçiniz:
+                {translate('selectOperation')}
               </p>
             </>
           ) : (
             <>
               <h1 style={{ fontWeight: 700 }} className="text-5xl text-center text-white">
-                Hoş Geldiniz
+                {translate('welcome')}
               </h1>
               <p style={{ fontWeight: 700 }} className="text-4xl text-center text-white">
-                Lütfen yapmak istediğiniz işlemi seçiniz:
+                {translate('selectOperation')}
               </p>
             </>
           )}
         </div>
         <div className="flex flex-col w-[540px] gap-12  justify-center">
           <HomeButtons
-            text="Randevu Al"
-            onClick={() => handleButtonClick('/verify-id-or-passport')}
+            text={translate('buttons.makeAppointment')}
+            onClick={() => handleButtonClick('/new-appointment')}
           />
           <HomeButtons
-            text="Randevum Var - Kayıt Aç"
+            text={translate('buttons.existingAppointment')}
             onClick={() => handleButtonClick('/appointment')}
           />
           <HomeButtons
-            text="Tetkikleri Onayla"
+            text={translate('buttons.approveTests')}
             onClick={() => handleButtonClick('/approve-tests')}
           />
           <HomeButtons
-            text="Bilgi Düzenleme / Güncelleme"
+            text={translate('buttons.updateInfo')}
             onClick={() => handleButtonClick('/update-info')}
           />
         </div>
@@ -70,7 +74,7 @@ const HomeButtons = ({ text, onClick }) => {
     <button
       onClick={onClick}
       style={{ fontWeight: 700 }}
-      className=" h-[70px] text-[32px] text-gray-700 flex items-center justify-center  border-none active:scale-95  tracking-wide bg-white/95  rounded-xl shadow-md cursor-pointer transition-all duration-200 ease-in-out backdrop-blur-md "
+      className=" py-4 text-[32px] text-gray-700 flex items-center justify-center  border-none active:scale-95  tracking-wide bg-white/95  rounded-xl shadow-md cursor-pointer transition-all duration-200 ease-in-out backdrop-blur-md"
     >
       {text}
     </button>

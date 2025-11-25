@@ -1,0 +1,8 @@
+{
+  "title": "Lütfen kimlik doğrulama için kullanacağınız kimlik tipini seçiniz.",
+  "buttons": {
+    "tcCard": "TC Kimlik Kartı",
+    "passport": "Pasaport"
+  }
+}
+

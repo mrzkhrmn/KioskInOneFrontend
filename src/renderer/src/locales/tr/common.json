@@ -1,0 +1,25 @@
+{
+  "buttons": {
+    "back": "Geri",
+    "home": "Ana Sayfa",
+    "logout": "Çıkış",
+    "continue": "Devam",
+    "confirm": "Onayla",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle"
+  },
+  "messages": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "İşlem başarılı",
+    "noData": "Veri bulunamadı"
+  },
+  "validation": {
+    "required": "Bu alan zorunludur",
+    "invalidEmail": "Geçerli bir e-posta adresi giriniz",
+    "invalidPhone": "Geçerli bir telefon numarası giriniz"
+  }
+}
+

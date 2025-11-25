@@ -1,16 +1,13 @@
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import AHLogo from '../../assets/images/ah-logo.png'
 import AHBLogo from '../../assets/images/ah-bodrum-logo.png'
 import KUHLogo from '../../assets/images/kuh-logo.png'
 import ATMLogo from '../../assets/images/atm-logo.png'
 import KSYLogo from '../../assets/images/ksy-logo.png'
 import NavigationButtons from '../../components/common/NavigationButtons'
+import { useSelector } from 'react-redux'
 
 const NewAppointmentPage = () => {
-  const navigate = useNavigate()
-  const user = true
-
+  const { user } = useSelector((state) => state.user)
   const hospitalData = [
     { logo: AHLogo, name: 'Amerikan Hastanesi' },
     { logo: ATMLogo, name: 'Amerikan Tıp Merkezi' },
@@ -18,12 +15,6 @@ const NewAppointmentPage = () => {
     { logo: AHBLogo, name: 'Bodrum Amerikan Hastanesi' },
     { logo: KSYLogo, name: 'Koç Sağlık Yanımda' }
   ]
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/verify-id-or-passport')
-    }
-  }, [user, navigate])
 
   return (
     <div className="flex flex-col items-center py-10  h-[93vh] w-screen">

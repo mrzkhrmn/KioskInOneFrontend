@@ -1,0 +1,25 @@
+{
+  "buttons": {
+    "back": "Back",
+    "home": "Home",
+    "logout": "Logout",
+    "continue": "Continue",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "noData": "No data found"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number"
+  }
+}
+

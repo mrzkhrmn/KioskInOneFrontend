@@ -1,0 +1,15 @@
+{
+  "title": "Registered Appointments",
+  "newAppointment": "Make New Appointment",
+  "dear": "Dear {name}",
+  "appointmentOperations": "You can perform operations related to your registered appointments:",
+  "card": {
+    "examination": "Examination",
+    "insurance": "Insurance",
+    "noInsurance": "No Insurance",
+    "confirm": "Confirm My Appointment",
+    "payment": "Payment",
+    "cancel": "Cancel"
+  }
+}
+

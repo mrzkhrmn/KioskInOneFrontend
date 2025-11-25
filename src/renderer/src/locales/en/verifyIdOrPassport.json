@@ -1,0 +1,8 @@
+{
+  "title": "Please select the type of identification you will use for identity verification.",
+  "buttons": {
+    "tcCard": "Turkish ID Card",
+    "passport": "Passport"
+  }
+}
+

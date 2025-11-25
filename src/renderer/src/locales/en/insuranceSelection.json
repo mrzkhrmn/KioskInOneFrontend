@@ -1,0 +1,10 @@
+{
+  "title": "Dear {name}",
+  "selectInsuranceType": "Please select the type of social security:",
+  "buttons": {
+    "individual": "Continue as Individual Patient",
+    "sgk": "SGK",
+    "privateInsurance": "Private Health Insurance"
+  }
+}
+

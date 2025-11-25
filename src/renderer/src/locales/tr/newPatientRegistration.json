@@ -1,0 +1,34 @@
+{
+  "nfc": {
+    "title": "Lütfen TC kimlik kartınızı NFC okuyucuya yerleştiriniz.",
+    "continue": "Devam"
+  },
+  "form": {
+    "title": "Lütfen Bilgilerinizi Giriniz",
+    "instruction": "İlgili alanlara dokunarak klavyeden giriş yapınız.",
+    "fields": {
+      "name": "Ahmet",
+      "surname": "Örnekadam",
+      "birthday": "1990-01-01",
+      "motherName": "Anne Adı",
+      "fatherName": "Baba Adı",
+      "email": "E-posta",
+      "phone": "Cep Telefonu",
+      "tc": "TC Kimlik No",
+      "country": "Ülke",
+      "city": "İl",
+      "district": "İlçe",
+      "address": "Atatürk Mah. Sedef Cad. Ata 3/4 Sitesi B1 Blok No:19 D:265 Ataşehir/İstanbul/Türkiye",
+      "plate": "Araç Plaka"
+    },
+    "submit": "Onayla ve Devam Et",
+    "note": "*Demografik bilgiler NVI sisteminden alındığından güncelleme yapılamamaktadır. Sadece renkli alanlar güncellenebilir",
+    "enlightmentText": "Aydınlatma Metni ve İletişim İzinleri"
+  },
+  "otp": {
+    "title": "Lütfen Bilgilerinizi Giriniz",
+    "instruction": "Kişisel verilerin işlenmesine ilişkin onay formunu onaylamak için lütfen telefonunuza gönderilen kodu giriniz..",
+    "confirm": "Onayla"
+  }
+}
+

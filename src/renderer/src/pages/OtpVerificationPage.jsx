@@ -8,6 +8,9 @@ import { setIsLoading } from '../redux/slices/appSlice'
 import { useDispatch } from 'react-redux'
 import { useToast } from '../hooks/useToast'
 import { setUser } from '../redux/slices/userSlice'
+import useTranslation from '../hooks/useTranslation'
+import otpVerificationTr from '../locales/tr/otpVerification.json'
+import otpVerificationEn from '../locales/en/otpVerification.json'
 
 const OtpVerificationPage = () => {
   const location = useLocation()
@@ -18,6 +21,7 @@ const OtpVerificationPage = () => {
   const dispatch = useDispatch()
   const { showError } = useToast()
   const navigate = useNavigate()
+  const translate = useTranslation({ tr: otpVerificationTr, en: otpVerificationEn })
 
   const handleOtpChange = (e) => {
     const value = e.target.value
@@ -69,12 +73,11 @@ const OtpVerificationPage = () => {
     <div className="flex flex-col h-[85vh] items-center justify-center ">
       <div className="flex flex-col gap-20 items-center justify-center h-full">
         <p className="text-5xl text-white text-center" style={{ fontWeight: 700 }}>
-          Lütfen Bilgilerinizi Giriniz
+          {translate('title')}
         </p>
         <div className="bg-white w-[900px] py-14 flex flex-col  rounded-2xl items-center justify-center gap-16">
           <p className="text-[32px] text-black text-center max-w-[600px] leading-10">
-            Kişisel verilerin işlenmesine ilişkin onay formunu onaylamak için lütfen telefonunuza
-            gönderilen kodu giriniz..
+            {translate('instruction')}
           </p>
           <div className="flex flex-col items-center gap-4">
             <input
@@ -84,7 +87,7 @@ const OtpVerificationPage = () => {
               value={otp}
               onChange={handleOtpChange}
               className="bg-black/5 w-[300px] h-[50px] rounded-2xl text-center text-[32px] text-black focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="-----"
+              placeholder={translate('placeholder')}
               style={{ fontWeight: 500 }}
             />
           </div>
@@ -96,7 +99,7 @@ const OtpVerificationPage = () => {
             onClick={handleSubmit}
             disabled={otp.length !== 5}
           >
-            Onayla
+            {translate('confirm')}
           </button>
         </div>
       </div>

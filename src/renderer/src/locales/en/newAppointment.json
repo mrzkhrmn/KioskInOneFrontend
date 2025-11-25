@@ -1,0 +1,13 @@
+{
+  "title": "Make Appointment",
+  "dear": "Dear {name}",
+  "selectHospital": "Select hospital:",
+  "hospitals": {
+    "ah": "American Hospital",
+    "atm": "American Medical Center",
+    "kuh": "Koç University Hospital",
+    "ahb": "Bodrum American Hospital",
+    "ksy": "Koç Health By My Side"
+  }
+}
+

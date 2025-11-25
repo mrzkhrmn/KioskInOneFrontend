@@ -1,0 +1,10 @@
+{
+  "title": "Sayın {name}",
+  "selectInsuranceType": "Lütfen sosyal güvence türü seçiniz:",
+  "buttons": {
+    "individual": "Bireysel Hasta Olarak Devam Et",
+    "sgk": "SGK",
+    "privateInsurance": "Özel Sağlık Sigortası"
+  }
+}
+

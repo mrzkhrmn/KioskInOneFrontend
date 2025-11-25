@@ -1,6 +1,6 @@
 {
   "name": "KioskInOne",
-  "version": "1.0.9",
+  "version": "1.0.7",
   "description": "An Electron application with React",
   "main": "./out/main/index.js",
   "author": "example.com",
@@ -50,6 +50,35 @@
     "vite": "^6.2.6"
   },
   "build": {
-    "extends": null
+    "appId": "com.kuh.kioskinone",
+    "productName": "KioskInOne",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*",
+      "resources/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "mrzkhrmn",
+        "repo": "KioskInOne",
+        "releaseType": "release"
+      }
+    ]
   }
 }

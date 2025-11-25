@@ -1,0 +1,12 @@
+{
+  "welcome": "Welcome",
+  "welcomeWithName": "Welcome {name} {surname}",
+  "selectOperation": "Please select the operation you want to perform:",
+  "buttons": {
+    "makeAppointment": "Make Appointment",
+    "existingAppointment": "I Have an Appointment - Open Registration",
+    "approveTests": "Approve Tests",
+    "updateInfo": "Edit / Update Information"
+  }
+}
+

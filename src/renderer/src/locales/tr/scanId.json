@@ -1,0 +1,20 @@
+{
+  "title": "Kimlik Tarama",
+  "scanning": "Taranıyor...",
+  "scanComplete": "Tarama Tamamlandı",
+  "instruction": "Lütfen {documentLabel} {stepAction} aşağıya gelecek şekilde okuyucuya yerleştiriniz.",
+  "documents": {
+    "tcCard": "TC kimlik kartınızı",
+    "passport": "pasaportunuzu"
+  },
+  "steps": {
+    "front": "ön yüzü",
+    "back": "arka yüzü",
+    "entryDate": "ülkeye giriş tarihi alanı"
+  },
+  "buttons": {
+    "continue": "Devam",
+    "complete": "Tamam"
+  }
+}
+

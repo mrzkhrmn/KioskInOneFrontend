@@ -11,6 +11,7 @@ import { useGetLanguageListMutation } from './services/commonApi'
 import { setLanguageList } from './redux/slices/appSlice'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import useSessionTimeout from './hooks/useSessionTimeout'
 import {
   HomePage,
   AppointmentPage,
@@ -22,6 +23,11 @@ import {
   ScanIdPage
 } from './pages'
 import OtpVerificationPage from './pages/OtpVerificationPage'
+
+function RouterContent() {
+  useSessionTimeout()
+  return null
+}
 
 function AppContent() {
   const dispatch = useDispatch()
@@ -84,6 +90,7 @@ function AppContent() {
       />
       <Header onLanguageSelectionModalOpen={setIsLanguageSelectionModalOpen} />
       <Router>
+        <RouterContent />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/appointment" element={<AppointmentPage />} />

@@ -7,6 +7,9 @@ import { useToast } from '../../hooks/useToast'
 import { useNavigate } from 'react-router-dom'
 import { useMemo, useState } from 'react'
 import PatientNotFoundModal from '../modals/PatientNotFoundModal'
+import useTranslation from '../../hooks/useTranslation'
+import scanIdTr from '../../locales/tr/scanId.json'
+import scanIdEn from '../../locales/en/scanId.json'
 
 const ScanDocument = ({ idType }) => {
   const dispatch = useDispatch()
@@ -15,15 +18,16 @@ const ScanDocument = ({ idType }) => {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
   const [showPatientNotFoundModal, setShowPatientNotFoundModal] = useState(false)
+  const translate = useTranslation({ tr: scanIdTr, en: scanIdEn })
 
   const labels = useMemo(() => {
     const isTc = idType === 2
     return {
-      documentLabel: isTc ? 'TC kimlik kartınızı' : 'pasaportunuzu',
-      step1Action: 'ön yüzü',
-      step2Action: isTc ? 'arka yüzü' : 'ülkeye giriş tarihi alanı'
+      documentLabel: isTc ? translate('documents.tcCard') : translate('documents.passport'),
+      step1Action: translate('steps.front'),
+      step2Action: isTc ? translate('steps.back') : translate('steps.entryDate')
     }
-  }, [idType])
+  }, [idType, translate])
 
   const handleContinue = async () => {
     if (step === 1) {
@@ -63,11 +67,10 @@ const ScanDocument = ({ idType }) => {
         <div className="bg-white w-[900px] px-10 py-14 flex flex-col gap-16 rounded-2xl items-center justify-center">
           <img src={EmptyImage} alt="EmptyImage" />
           <p className="text-[32px] text-black text-center max-w-[600px] leading-10">
-            Lütfen {labels.documentLabel}{' '}
-            <span style={{ fontWeight: 700 }}>
-              {step === 1 ? labels.step1Action : labels.step2Action}
-            </span>{' '}
-            aşağıya gelecek şekilde okuyucuya yerleştiriniz.
+            {translate('instruction', {
+              documentLabel: labels.documentLabel,
+              stepAction: step === 1 ? labels.step1Action : labels.step2Action
+            })}
           </p>
         </div>
         <button
@@ -75,7 +78,7 @@ const ScanDocument = ({ idType }) => {
           style={{ fontWeight: 700 }}
           className="bg-primary w-[370px] rounded-2xl h-[70px] text-white text-[32px] shadow-lg"
         >
-          {step === 1 ? 'Devam' : 'Tamam'}
+          {step === 1 ? translate('buttons.continue') : translate('buttons.complete')}
         </button>
       </div>
       <NavigationButtons isHome={false} goBackTo="/verify-id-or-passport" />

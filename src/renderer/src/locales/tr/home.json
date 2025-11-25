@@ -1,0 +1,11 @@
+{
+  "welcome": "Hoş Geldiniz",
+  "welcomeWithName": "Hoş Geldiniz {name} {surname}",
+  "selectOperation": "Lütfen yapmak istediğiniz işlemi seçiniz:",
+  "buttons": {
+    "makeAppointment": "Randevu Al",
+    "existingAppointment": "Randevum Var - Kayıt Aç",
+    "approveTests": "Tetkikleri Onayla",
+    "updateInfo": "Bilgi Düzenleme / Güncelleme"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "nfc": {
+    "title": "Please place your Turkish ID card on the NFC reader.",
+    "continue": "Continue"
+  },
+  "form": {
+    "title": "Please Enter Your Information",
+    "instruction": "Touch the relevant fields and enter from the keyboard.",
+    "fields": {
+      "name": "John",
+      "surname": "Doe",
+      "birthday": "1990-01-01",
+      "motherName": "Mother's Name",
+      "fatherName": "Father's Name",
+      "email": "Email",
+      "phone": "Mobile Phone",
+      "tc": "Turkish ID Number",
+      "country": "Country",
+      "city": "Province",
+      "district": "District",
+      "address": "Street Address",
+      "plate": "Vehicle Plate"
+    },
+    "submit": "Confirm and Continue",
+    "note": "*Demographic information cannot be updated as it is retrieved from the NVI system. Only colored fields can be updated",
+    "enlightmentText": "Enlightenment Text and Communication Permissions"
+  },
+  "otp": {
+    "title": "Please Enter Your Information",
+    "instruction": "Please enter the code sent to your phone to approve the consent form regarding the processing of personal data..",
+    "confirm": "Confirm"
+  }
+}
+

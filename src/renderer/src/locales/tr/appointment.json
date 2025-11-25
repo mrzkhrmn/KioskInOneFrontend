@@ -1,0 +1,15 @@
+{
+  "title": "Kayıtlı Randevular",
+  "newAppointment": "Yeni Randevu Al",
+  "dear": "Sayın {name}",
+  "appointmentOperations": "Kayıtlı randevularınızla ilgili işlem yapabilirsiniz:",
+  "card": {
+    "examination": "Muayene",
+    "insurance": "Sigorta",
+    "noInsurance": "Sigorta Yok",
+    "confirm": "Randevumu Onayla",
+    "payment": "Ödeme",
+    "cancel": "İptal Et"
+  }
+}
+

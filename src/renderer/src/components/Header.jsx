@@ -7,6 +7,8 @@ import Clock from './common/Clock'
 const Header = ({ onLanguageSelectionModalOpen }) => {
   const selectedLanguage = useSelector((state) => state.app.selectedLanguage)
 
+  console.log(selectedLanguage)
+
   const getFlagImage = (code) => {
     if (code === 'tr') {
       return TurkeyFlag
