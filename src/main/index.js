@@ -101,20 +101,22 @@ function setupAutoUpdater() {
           cancelId: 1,
           title: 'Güncelleme hazır',
           message:
-            'Yeni bir sürüm indirildi. Şimdi uygulamayı yeniden başlatıp güncellemek ister misiniz?',
+            'Yeni bir sürüm indirildi. Uygulama kapanacak ve arka planda güncelleme yapılacak. Kurulum tamamlandığında uygulama otomatik olarak yeniden açılacak.',
           detail: `Mevcut sürüm: ${app.getVersion()}\nYeni sürüm: ${info?.version || ''}`
         })
 
         if (result.response === 0) {
-          setImmediate(() => {
-            autoUpdater.quitAndInstall()
-          })
+          send('update-installing')
+
+          setTimeout(() => {
+            autoUpdater.quitAndInstall(true, true)
+          }, 500)
         } else {
           send('update-postponed')
         }
       } else {
         setImmediate(() => {
-          autoUpdater.quitAndInstall()
+          autoUpdater.quitAndInstall(true, true)
         })
       }
     } catch (err) {
