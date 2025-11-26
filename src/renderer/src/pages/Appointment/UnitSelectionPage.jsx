@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import NavigationButtons from '../../components/common/NavigationButtons'
 import { useNavigate } from 'react-router-dom'
+import useTranslation from '../../hooks/useTranslation'
+
 const UnitSelectionPage = () => {
   const user = useSelector((state) => state.user.user)
   const [searchTerm, setSearchTerm] = useState('')
-
   const navigate = useNavigate()
+  const translate = useTranslation('newAppointment')
+
   const handleUnitSelection = (unit) => {
     navigate('/doctor-selection', { state: { unitName: unit } })
   }
@@ -38,19 +41,22 @@ const UnitSelectionPage = () => {
   return (
     <div className="flex flex-col py-12 h-[90vh] w-screen">
       <h1 style={{ fontWeight: 700 }} className="text-5xl text-white text-center mt-10">
-        Randevu Al
+        {translate('title')}
       </h1>
 
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-5xl text-white font-bold mt-24">
-          Sayın {user?.patientName} {user?.patientSurname}
+          {translate('dear', {
+            name: user?.patientName || '',
+            surname: user?.patientSurname || ''
+          })}
         </h1>
-        <h2 className="text-4xl text-white font-bold mt-10">Bölüm Seçiniz</h2>
+        <h2 className="text-4xl text-white font-bold mt-10">{translate('selectUnit')}</h2>
 
         <div className="w-full max-w-xl mt-10 px-4">
           <input
             type="text"
-            placeholder="Bölüm ara..."
+            placeholder={translate('selectUnitPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full text-3xl px-6 py-4 rounded-2xl border-2 border-gray-300 focus:outline-none focus:border-primary text-black"

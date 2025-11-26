@@ -1,24 +1,19 @@
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import NavigationButtons from '../components/common/NavigationButtons'
+import useTranslation from '../hooks/useTranslation'
 
 const AppointmentAccept = () => {
-  const navigate = useNavigate()
+  const translate = useTranslation('appointmentAccept')
+
   return (
     <div className="flex flex-col   h-[93vh] items-center justify-center w-screen ">
-      {/* <h1
-        className="text-5xl text-white text-center"
-        style={{ fontWeight: 700, marginTop: '100px' }}
-      >
-        Randevu Kabul
-      </h1> */}
       <div className="flex flex-col items-center justify-center  h-full gap-20">
         <div className="flex flex-col items-center justify-center gap-10">
           <h1 className="text-5xl text-white text-center" style={{ fontWeight: 700 }}>
-            Hoş Geldiniz
+            {translate('welcome')}
           </h1>
           <h2 className="text-4xl text-white text-center" style={{ fontWeight: 700 }}>
-            Lütfen sosyal güvence türü seçiniz:
+            {translate('selectInsuranceType')}
           </h2>
         </div>
         <div className="flex flex-col gap-12">
@@ -27,21 +22,21 @@ const AppointmentAccept = () => {
             className="bg-white text-black items-center justify-center py-2 px-10 text-[32px] rounded-2xl text-center"
             style={{ fontWeight: 700 }}
           >
-            Bireysel Hasta Olarak Devam Et
+            {translate('buttons.individual')}
           </Link>
           <Link
             to="/"
             className="bg-white text-black items-center justify-center py-2 px-10 text-[32px] rounded-2xl text-center"
             style={{ fontWeight: 700 }}
           >
-            SGK
+            {translate('buttons.sgk')}
           </Link>
           <Link
             to="/"
             className="bg-white text-black items-center justify-center py-2 px-10 text-[32px] rounded-2xl text-center"
             style={{ fontWeight: 700 }}
           >
-            Özel Sağlık Sigortası
+            {translate('buttons.privateInsurance')}
           </Link>
         </div>
       </div>

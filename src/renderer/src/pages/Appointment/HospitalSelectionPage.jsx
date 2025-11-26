@@ -4,16 +4,16 @@ import KUHLogo from '../../assets/images/kuh-logo.png'
 import ATMLogo from '../../assets/images/atm-logo.png'
 import KSYLogo from '../../assets/images/ksy-logo.png'
 import NavigationButtons from '../../components/common/NavigationButtons'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import useTranslation from '../../hooks/useTranslation'
 
 const HospitalSelectionPage = () => {
   const user = useSelector((state) => state.user.user)
-  const [selectedHospital, setSelectedHospital] = useState(null)
   const navigate = useNavigate()
-  const handleHospitalSelection = (hospital) => {
-    setSelectedHospital(hospital)
+  const translate = useTranslation('newAppointment')
+
+  const handleHospitalSelection = () => {
     navigate('/insurance-selection')
   }
 
@@ -28,15 +28,18 @@ const HospitalSelectionPage = () => {
   return (
     <div className="flex flex-col py-12 h-[90vh] w-screen">
       <h1 style={{ fontWeight: 700 }} className="text-5xl text-white text-center mt-10">
-        Randevu Al
+        {translate('title')}
       </h1>
       <div className="flex flex-col items-center justify-center h-full gap-20">
         <div className="flex flex-col items-center justify-center gap-8">
           <h1 style={{ fontWeight: 700 }} className="text-5xl text-white">
-            Sayın {user?.patientName} {user?.patientSurname}
+            {translate('dear', {
+              name: user?.patientName || '',
+              surname: user?.patientSurname || ''
+            })}
           </h1>
           <h2 style={{ fontWeight: 700 }} className="text-4xl text-white">
-            Hastane seçiniz:
+            {translate('selectHospital')}
           </h2>
         </div>
         <div className="flex flex-col items-center justify-center gap-12">
@@ -62,7 +65,7 @@ const HospitalButton = ({ logo, name, onClick }) => {
       onClick={() => onClick(name)}
     >
       <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
-        <img src={logo} alt="AmerikanLogo" />
+        <img src={logo} alt="HospitalLogo" />
       </div>
       <div className="bg-white w-full h-[10px] absolute bottom-0 z-0 rounded-b-2xl "></div>
       <p

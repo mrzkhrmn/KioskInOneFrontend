@@ -1,12 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import NavigationButtons from '../components/common/NavigationButtons'
 import useTranslation from '../hooks/useTranslation'
-import verifyIdOrPassportTr from '../locales/tr/verifyIdOrPassport.json'
-import verifyIdOrPassportEn from '../locales/en/verifyIdOrPassport.json'
 
 const VerifyIdOrPassportPage = () => {
   const navigate = useNavigate()
-  const translate = useTranslation({ tr: verifyIdOrPassportTr, en: verifyIdOrPassportEn })
+  const translate = useTranslation('verifyIdOrPassport')
 
   const handleIdTypeSelection = (idType) => {
     navigate(`/scan-id?idType=${idType}`)

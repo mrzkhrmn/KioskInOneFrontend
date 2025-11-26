@@ -12,6 +12,7 @@ import { setLanguageList } from './redux/slices/appSlice'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useSessionTimeout from './hooks/useSessionTimeout'
+import './i18n/config'
 import {
   HomePage,
   AppointmentPage,

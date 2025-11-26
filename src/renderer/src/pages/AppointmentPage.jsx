@@ -2,23 +2,15 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import AHLogo from '../assets/images/ah-logo.png'
 import DoctorProfileImage from '../assets/images/doctor.png'
-import {
-  HospitalIcon,
-  MuayeneIcon,
-  CalendarIcon,
-  ClockIcon,
-  GuardIcon,
-  HomeIcon
-} from '../components/icons'
-import AHBLogo from '../assets/images/ah-bodrum-logo.png'
-import KUHLogo from '../assets/images/kuh-logo.png'
-import ATMLogo from '../assets/images/atm-logo.png'
-import KSYLogo from '../assets/images/ksy-logo.png'
+import { HospitalIcon, MuayeneIcon, CalendarIcon, ClockIcon, GuardIcon } from '../components/icons'
 import NavigationButtons from '../components/common/NavigationButtons'
+import useTranslation from '../hooks/useTranslation'
+import { useSelector } from 'react-redux'
 
 const AppointmentPage = () => {
   const navigate = useNavigate()
-  const user = true
+  const user = useSelector((state) => state.user.user)
+  const translate = useTranslation('appointment')
 
   useEffect(() => {
     if (!user) {
@@ -29,23 +21,28 @@ const AppointmentPage = () => {
   return (
     <div className="flex flex-col  py-24  h-[90vh] w-screen">
       <h2 style={{ fontWeight: 700 }} className="text-5xl text-white text-center">
-        Kayıtlı Randevular
+        {translate('title')}
       </h2>
       <button className="bg-primary text-[32px] self-center font-bold px-12 py-3 rounded-2xl text-white mt-14">
-        Yeni Randevu Al
+        {translate('newAppointment')}
       </button>
 
       <div className="flex flex-col items-center justify-center">
-        <h1 className=" text-5xl text-white font-bold mt-24">Sayın Ahmet Örnekadam</h1>
+        <h1 className=" text-5xl text-white font-bold mt-24">
+          {translate('dear', {
+            name: user?.patientName || 'Ahmet',
+            surname: user?.patientSurname || 'Örnekadam'
+          })}
+        </h1>
         <h2 className=" text-4xl text-white font-bold mt-10">
-          Kayıtlı randevularınızla ilgili işlem yapabilirsiniz:
+          {translate('appointmentOperations')}
         </h2>
         <div className="overflow-y-auto max-h-[970px]  mt-20 pr-4">
           <div className="space-y-8">
-            <AppointmentCard />
-            <AppointmentCard />
-            <AppointmentCard />
-            <AppointmentCard />
+            <AppointmentCard translate={translate} />
+            <AppointmentCard translate={translate} />
+            <AppointmentCard translate={translate} />
+            <AppointmentCard translate={translate} />
           </div>
         </div>
       </div>
@@ -54,7 +51,7 @@ const AppointmentPage = () => {
   )
 }
 
-const AppointmentCard = () => {
+const AppointmentCard = ({ translate }) => {
   return (
     <div className=" bg-white p-8 rounded-xl ">
       <div className="flex items-center justify-between">
@@ -73,7 +70,7 @@ const AppointmentCard = () => {
         <div className="flex flex-col gap-4 ">
           <div className="flex items-center gap-4">
             <MuayeneIcon width={32} height={32} />
-            <p className="text-black text-[28px]">Muayene</p>
+            <p className="text-black text-[28px]">{translate('card.examination')}</p>
           </div>
           <div className="flex items-center gap-4">
             <HospitalIcon />
@@ -89,18 +86,18 @@ const AppointmentCard = () => {
           </div>
           <div className="flex items-center gap-4">
             <GuardIcon />
-            <p className="text-black text-[28px]">Sigorta Yok</p>
+            <p className="text-black text-[28px]">{translate('card.noInsurance')}</p>
           </div>
         </div>
         <div className="flex flex-col justify-between">
           <button className="bg-primary text-3xl text-white font-bold py-4 border border-primary  px-10 rounded-2xl shadow-xl">
-            Randevumu Onayla
+            {translate('card.confirm')}
           </button>
           <button className="bg-[#D9D9D9] text-3xl text-black font-bold border border-black/50 py-4 px-10 rounded-2xl shadow-xl">
-            Ödeme
+            {translate('card.payment')}
           </button>
           <button className="bg-[#D9D9D9] text-3xl text-black font-bold border border-black/50 py-4 px-10 rounded-2xl shadow-xl">
-            İptal Et
+            {translate('card.cancel')}
           </button>
         </div>
       </div>

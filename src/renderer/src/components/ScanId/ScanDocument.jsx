@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom'
 import { useMemo, useState } from 'react'
 import PatientNotFoundModal from '../modals/PatientNotFoundModal'
 import useTranslation from '../../hooks/useTranslation'
-import scanIdTr from '../../locales/tr/scanId.json'
-import scanIdEn from '../../locales/en/scanId.json'
 
 const ScanDocument = ({ idType }) => {
   const dispatch = useDispatch()
@@ -18,7 +16,7 @@ const ScanDocument = ({ idType }) => {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
   const [showPatientNotFoundModal, setShowPatientNotFoundModal] = useState(false)
-  const translate = useTranslation({ tr: scanIdTr, en: scanIdEn })
+  const translate = useTranslation('scanId')
 
   const labels = useMemo(() => {
     const isTc = idType === 2

@@ -1,13 +1,16 @@
 {
   "title": "Make Appointment",
-  "dear": "Dear {name}",
+  "dear": "Dear {name} {surname}",
   "selectHospital": "Select hospital:",
-  "hospitals": {
-    "ah": "American Hospital",
-    "atm": "American Medical Center",
-    "kuh": "Koç University Hospital",
-    "ahb": "Bodrum American Hospital",
-    "ksy": "Koç Health By My Side"
+  "selectUnit": "Select Department",
+  "selectUnitPlaceholder": "Search department...",
+  "selectDateAndDoctor": "Select date, doctor and time:",
+  "selectAppointmentType": "Select appointment type:",
+  "appointmentDate": "Appointment Date:",
+  "appointmentTime": "Appointment Time:",
+  "continueWithSelection": "Continue with Selection",
+  "appointmentTypes": {
+    "examination": "Examination",
+    "control": "Control Appointment"
   }
 }
-

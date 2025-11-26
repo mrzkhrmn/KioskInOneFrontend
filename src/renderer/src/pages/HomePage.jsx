@@ -2,16 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavigationButtons from '../components/common/NavigationButtons'
 import useTranslation from '../hooks/useTranslation'
-import homeTr from '../locales/tr/home.json'
-import homeEn from '../locales/en/home.json'
 
 const HomePage = () => {
   const user = useSelector((state) => state.user.user)
   const navigate = useNavigate()
-  const translate = useTranslation({ tr: homeTr, en: homeEn })
+  const translate = useTranslation('home')
 
   const handleButtonClick = (path) => {
-    if (user) {
+    if (!user) {
       navigate('/verify-id-or-passport')
       return
     }

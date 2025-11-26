@@ -9,8 +9,6 @@ import { useDispatch } from 'react-redux'
 import { useToast } from '../hooks/useToast'
 import { setUser } from '../redux/slices/userSlice'
 import useTranslation from '../hooks/useTranslation'
-import otpVerificationTr from '../locales/tr/otpVerification.json'
-import otpVerificationEn from '../locales/en/otpVerification.json'
 
 const OtpVerificationPage = () => {
   const location = useLocation()
@@ -21,7 +19,7 @@ const OtpVerificationPage = () => {
   const dispatch = useDispatch()
   const { showError } = useToast()
   const navigate = useNavigate()
-  const translate = useTranslation({ tr: otpVerificationTr, en: otpVerificationEn })
+  const translate = useTranslation('otpVerification')
 
   const handleOtpChange = (e) => {
     const value = e.target.value

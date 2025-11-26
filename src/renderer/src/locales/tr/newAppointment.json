@@ -1,13 +1,16 @@
 {
   "title": "Randevu Al",
-  "dear": "Sayın {name}",
+  "dear": "Sayın {name} {surname}",
   "selectHospital": "Hastane seçiniz:",
-  "hospitals": {
-    "ah": "Amerikan Hastanesi",
-    "atm": "Amerikan Tıp Merkezi",
-    "kuh": "Koç Üniversitesi Hastanesi",
-    "ahb": "Bodrum Amerikan Hastanesi",
-    "ksy": "Koç Sağlık Yanımda"
+  "selectUnit": "Bölüm Seçiniz",
+  "selectUnitPlaceholder": "Bölüm ara...",
+  "selectDateAndDoctor": "Tarih, doktor ve saat seçiniz:",
+  "selectAppointmentType": "Randevu tipi seçiniz:",
+  "appointmentDate": "Randevu Tarihi:",
+  "appointmentTime": "Randevu Saati:",
+  "continueWithSelection": "Seçimle Devam Et",
+  "appointmentTypes": {
+    "examination": "Muayene",
+    "control": "Kontrol Randevusu"
   }
 }
-

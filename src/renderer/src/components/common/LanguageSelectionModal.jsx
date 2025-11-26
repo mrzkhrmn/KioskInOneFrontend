@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useGetLanguageListMutation } from '../../services/commonApi'
 import { setSelectedLanguage, setLanguageList } from '../../redux/slices/appSlice'
 import TurkeyFlag from '../../assets/flagTurkey.png'
+import { useTranslation } from 'react-i18next'
 
 const LanguageSelectionModal = ({ onClose }) => {
   const dispatch = useDispatch()
   const [getLanguageList, { isLoading }] = useGetLanguageListMutation()
   const languageList = useSelector((state) => state.app.languageList)
   const selectedLanguage = useSelector((state) => state.app.selectedLanguage)
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -36,6 +38,7 @@ const LanguageSelectionModal = ({ onClose }) => {
 
   const handleLanguageSelect = (language) => {
     dispatch(setSelectedLanguage(language))
+    i18n.changeLanguage(language.code)
     onClose(false)
   }
 

@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import SelectDoctorCard from '../../components/Appointment/SelectDoctorCard'
+import useTranslation from '../../hooks/useTranslation'
+
 const DoctorSelectionPage = () => {
   const location = useLocation()
   const unitName = location.state?.unitName || ''
@@ -10,6 +12,7 @@ const DoctorSelectionPage = () => {
   const [selectedDate, setSelectedDate] = useState('2025-04-16')
   const [selectedTime, setSelectedTime] = useState({ doctorId: null, time: null, doctorName: null })
   const navigate = useNavigate()
+  const translate = useTranslation('newAppointment')
   const doctors = [
     {
       id: 1,
@@ -90,15 +93,18 @@ const DoctorSelectionPage = () => {
   return (
     <div className="flex flex-col py-12 h-[90vh] w-screen">
       <h1 style={{ fontWeight: 700 }} className="text-5xl text-white text-center mt-10">
-        {unitName ? `Randevu Al > ${unitName}` : 'Randevu Al'}
+        {unitName ? `${translate('title')} > ${unitName}` : translate('title')}
       </h1>
       <div className="flex flex-col items-center justify-center h-full gap-20">
         <div className="flex flex-col items-center justify-center gap-8">
           <h1 style={{ fontWeight: 700 }} className="text-5xl text-white">
-            Sayın {user?.patientName} {user?.patientSurname}
+            {translate('dear', {
+              name: user?.patientName || '',
+              surname: user?.patientSurname || ''
+            })}
           </h1>
           <h2 style={{ fontWeight: 700 }} className="text-4xl text-white">
-            Tarih, doktor ve saat seçiniz:
+            {translate('selectDateAndDoctor')}
           </h2>
         </div>
         <div className="flex  items-center justify-center">
@@ -127,14 +133,18 @@ const DoctorSelectionPage = () => {
           <div className="bg-white w-[870px] rounded-2xl p-8 mt-2 mr-10 shadow-lg flex items-center justify-between">
             <div className="flex flex-col gap-3">
               <p className="text-2xl font-bold text-black">{selectedTime.doctorName}</p>
-              <p className="text-xl text-black">Randevu Tarihi: {formatDate(selectedDate)}</p>
-              <p className="text-xl text-black">Randevu Saati: {selectedTime.time}</p>
+              <p className="text-xl text-black">
+                {translate('appointmentDate')} {formatDate(selectedDate)}
+              </p>
+              <p className="text-xl text-black">
+                {translate('appointmentTime')} {selectedTime.time}
+              </p>
             </div>
             <button
               onClick={handleContinue}
               className="bg-[#aa182c] text-white px-12 py-5 rounded-2xl text-2xl font-bold shadow-md hover:bg-[#8a1423] transition-colors whitespace-nowrap"
             >
-              Seçimle Devam Et
+              {translate('continueWithSelection')}
             </button>
           </div>
         )}

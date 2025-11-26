@@ -1,38 +1,51 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import NavigationButtons from '../../components/common/NavigationButtons'
+import useTranslation from '../../hooks/useTranslation'
+
 const InsuranceSelectionPage = () => {
   const user = useSelector((state) => state.user.user)
-  const [selectedInsurance, setSelectedInsurance] = useState(null)
   const navigate = useNavigate()
-  const handleInsuranceSelection = (insurance) => {
-    setSelectedInsurance(insurance)
+  const translate = useTranslation('insuranceSelection')
+  const translateAppointment = useTranslation('newAppointment')
+
+  const handleInsuranceSelection = () => {
     navigate('/appointment-type-selection')
   }
 
   return (
     <div className="flex flex-col py-12 h-[90vh] w-screen">
       <h1 style={{ fontWeight: 700 }} className="text-5xl text-white text-center mt-10">
-        Randevu Al
+        {translateAppointment('title')}
       </h1>
       <div className="flex-1 items-center justify-center flex flex-col gap-20">
         <div className="flex flex-col gap-10  justify-center ">
           <h1 style={{ fontWeight: 700 }} className="text-5xl text-center text-white">
-            Sayın {user?.patientName} {user?.patientSurname}
+            {translate('title', {
+              name: user?.patientName || '',
+              surname: user?.patientSurname || ''
+            })}
           </h1>
           <p style={{ fontWeight: 700 }} className="text-4xl text-center text-white">
-            Lütfen sosyal güvence türü seçiniz:
+            {translate('selectInsuranceType')}
           </p>
         </div>
         <div className="flex flex-col w-[540px] gap-12  justify-center">
           <InsuranceButtons
-            text="Bireysel Hasta Olarak Devam Et"
-            to="/id-verification"
+            textKey="buttons.individual"
+            translate={translate}
             onClick={handleInsuranceSelection}
           />
-          <InsuranceButtons text="SGK" to="/sgk" />
-          <InsuranceButtons text="Özel Sağlık Sigortası" to="/private-insurance" />
+          <InsuranceButtons
+            textKey="buttons.sgk"
+            translate={translate}
+            onClick={handleInsuranceSelection}
+          />
+          <InsuranceButtons
+            textKey="buttons.privateInsurance"
+            translate={translate}
+            onClick={handleInsuranceSelection}
+          />
         </div>
       </div>
       <NavigationButtons />
@@ -40,7 +53,8 @@ const InsuranceSelectionPage = () => {
   )
 }
 
-const InsuranceButtons = ({ text, onClick }) => {
+const InsuranceButtons = ({ textKey, translate, onClick }) => {
+  const text = translate(textKey)
   return (
     <button
       style={{ fontWeight: 700 }}
