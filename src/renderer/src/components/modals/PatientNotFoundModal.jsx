@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 
-const PatientNotFoundModal = ({ onClose }) => {
+const PatientNotFoundModal = ({ onClose, idType }) => {
   const navigate = useNavigate()
 
   const handleNewPatient = () => {
-    navigate('/new-patient')
+    onClose()
+    navigate('/new-patient', { state: { idType } })
   }
 
   const handleExit = () => {
+    onClose()
     navigate('/')
   }
 

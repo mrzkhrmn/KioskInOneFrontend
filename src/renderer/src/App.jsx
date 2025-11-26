@@ -18,9 +18,12 @@ import {
   NewPatientRegistrationPage,
   AppointmentAccept,
   VerifyIdOrPassportPage,
-  NewAppointmentPage,
   InsuranceSelectionPage,
-  ScanIdPage
+  ScanIdPage,
+  HospitalSelectionPage,
+  UnitSelectionPage,
+  AppointmentTypeSelectionPage,
+  DoctorSelectionPage
 } from './pages'
 import OtpVerificationPage from './pages/OtpVerificationPage'
 
@@ -94,12 +97,15 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/appointment" element={<AppointmentPage />} />
-          <Route path="/new-appointment" element={<NewAppointmentPage />} />
           <Route path="/new-patient" element={<NewPatientRegistrationPage />} />
           <Route path="/appointment-accept" element={<AppointmentAccept />} />
           <Route path="/verify-id-or-passport" element={<VerifyIdOrPassportPage />} />
           <Route path="/scan-id" element={<ScanIdPage />} />
           <Route path="/insurance-selection" element={<InsuranceSelectionPage />} />
+          <Route path="/hospital-selection" element={<HospitalSelectionPage />} />
+          <Route path="/unit-selection" element={<UnitSelectionPage />} />
+          <Route path="/appointment-type-selection" element={<AppointmentTypeSelectionPage />} />
+          <Route path="/doctor-selection" element={<DoctorSelectionPage />} />
           <Route path="/otp-verification" element={<OtpVerificationPage />} />
         </Routes>
       </Router>

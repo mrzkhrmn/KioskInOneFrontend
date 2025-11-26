@@ -11,7 +11,7 @@ const HomePage = () => {
   const translate = useTranslation({ tr: homeTr, en: homeEn })
 
   const handleButtonClick = (path) => {
-    if (!user) {
+    if (user) {
       navigate('/verify-id-or-passport')
       return
     }
@@ -48,7 +48,7 @@ const HomePage = () => {
         <div className="flex flex-col w-[540px] gap-12  justify-center">
           <HomeButtons
             text={translate('buttons.makeAppointment')}
-            onClick={() => handleButtonClick('/new-appointment')}
+            onClick={() => handleButtonClick('/hospital-selection')}
           />
           <HomeButtons
             text={translate('buttons.existingAppointment')}

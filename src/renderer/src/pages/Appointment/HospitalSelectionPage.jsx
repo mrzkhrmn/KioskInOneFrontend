@@ -4,10 +4,19 @@ import KUHLogo from '../../assets/images/kuh-logo.png'
 import ATMLogo from '../../assets/images/atm-logo.png'
 import KSYLogo from '../../assets/images/ksy-logo.png'
 import NavigationButtons from '../../components/common/NavigationButtons'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const NewAppointmentPage = () => {
-  const { user } = useSelector((state) => state.user)
+const HospitalSelectionPage = () => {
+  const user = useSelector((state) => state.user.user)
+  const [selectedHospital, setSelectedHospital] = useState(null)
+  const navigate = useNavigate()
+  const handleHospitalSelection = (hospital) => {
+    setSelectedHospital(hospital)
+    navigate('/insurance-selection')
+  }
+
   const hospitalData = [
     { logo: AHLogo, name: 'Amerikan Hastanesi' },
     { logo: ATMLogo, name: 'Amerikan Tıp Merkezi' },
@@ -17,14 +26,14 @@ const NewAppointmentPage = () => {
   ]
 
   return (
-    <div className="flex flex-col items-center py-10  h-[93vh] w-screen">
-      <h1 style={{ fontWeight: 700 }} className="text-5xl text-white">
+    <div className="flex flex-col py-12 h-[90vh] w-screen">
+      <h1 style={{ fontWeight: 700 }} className="text-5xl text-white text-center mt-10">
         Randevu Al
       </h1>
       <div className="flex flex-col items-center justify-center h-full gap-20">
         <div className="flex flex-col items-center justify-center gap-8">
           <h1 style={{ fontWeight: 700 }} className="text-5xl text-white">
-            Sayın Ahmet Örnekadam
+            Sayın {user?.patientName} {user?.patientSurname}
           </h1>
           <h2 style={{ fontWeight: 700 }} className="text-4xl text-white">
             Hastane seçiniz:
@@ -32,7 +41,12 @@ const NewAppointmentPage = () => {
         </div>
         <div className="flex flex-col items-center justify-center gap-12">
           {hospitalData.map((hospital, index) => (
-            <HospitalButton key={index} logo={hospital.logo} name={hospital.name} />
+            <HospitalButton
+              key={index}
+              logo={hospital.logo}
+              name={hospital.name}
+              onClick={handleHospitalSelection}
+            />
           ))}
         </div>
       </div>
@@ -41,9 +55,12 @@ const NewAppointmentPage = () => {
   )
 }
 
-const HospitalButton = ({ logo, name }) => {
+const HospitalButton = ({ logo, name, onClick }) => {
   return (
-    <button className="flex  items-center justify-center relative gap-4 z-10 h-[70px] active:scale-95 transition-all duration-200 ease-in-out ">
+    <button
+      className="flex  items-center justify-center relative gap-4 z-10 h-[70px] active:scale-95 transition-all duration-200 ease-in-out "
+      onClick={() => onClick(name)}
+    >
       <div className="bg-white py-4 rounded-t-2xl flex items-center justify-center rounded-b-xl relative z-10 w-[210px] h-full">
         <img src={logo} alt="AmerikanLogo" />
       </div>
@@ -58,4 +75,4 @@ const HospitalButton = ({ logo, name }) => {
   )
 }
 
-export default NewAppointmentPage
+export default HospitalSelectionPage

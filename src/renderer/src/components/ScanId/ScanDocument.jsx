@@ -30,13 +30,16 @@ const ScanDocument = ({ idType }) => {
   }, [idType, translate])
 
   const handleContinue = async () => {
-    if (step === 1) {
+    const isTc = idType === 2
+    const isPassport = idType === 3
+
+    if (isPassport && step === 1) {
       setStep(2)
       return
     }
+
     try {
       dispatch(setIsLoading(true))
-      const isTc = idType === 2
       const result = await patientLogin({
         type: idType,
         birthDate: '2001-06-20',
@@ -83,7 +86,7 @@ const ScanDocument = ({ idType }) => {
       </div>
       <NavigationButtons isHome={false} goBackTo="/verify-id-or-passport" />
       {showPatientNotFoundModal && (
-        <PatientNotFoundModal onClose={() => setShowPatientNotFoundModal(false)} />
+        <PatientNotFoundModal onClose={() => setShowPatientNotFoundModal(false)} idType={idType} />
       )}
     </div>
   )

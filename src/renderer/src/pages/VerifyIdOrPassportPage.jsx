@@ -37,7 +37,7 @@ const VerifyIdOrPassportPage = () => {
           </div>
         </div>
       </div>
-      <NavigationButtons isHome={false} isLogout={false} />
+      <NavigationButtons isHome={false} isLogout={false} goBackTo="/" />
     </div>
   )
 }

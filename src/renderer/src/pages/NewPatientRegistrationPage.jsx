@@ -1,13 +1,19 @@
 import NfcGif from '../assets/images/nfc-anim.gif'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import EnlightmentTextModal from '../components/modals/EnlightmentTextModal'
 import NavigationButtons from '../components/common/NavigationButtons'
 
 const NewPatientRegistrationPage = () => {
+  const location = useLocation()
+  const idType = location.state?.idType || 2
+  const isPassport = idType === 3
   const [nfcVerified, setNfcVerified] = useState(false)
   const [formVerified, setFormVerified] = useState(false)
   const [isEnlightmentTextModalOpen, setIsEnlightmentTextModalOpen] = useState(false)
+  const [phoneType, setPhoneType] = useState('domestic')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [passportNo, setPassportNo] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = () => {
@@ -25,7 +31,8 @@ const NewPatientRegistrationPage = () => {
               style={{ marginLeft: '30px' }}
             />
             <p className="text-[32px] text-black text-center max-w-[580px] leading-10">
-              Lütfen TC kimlik kartınızı <span style={{ fontWeight: 700 }}>NFC okuyucuya </span>
+              Lütfen {isPassport ? 'pasaportunuzu' : 'TC kimlik kartınızı'}{' '}
+              <span style={{ fontWeight: 700 }}>NFC okuyucuya </span>
               yerleştiriniz.
             </p>
           </div>
@@ -84,20 +91,44 @@ const NewPatientRegistrationPage = () => {
                   id="email"
                   className="bg-primary/20 w-full px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
                 />
-                <input
-                  placeholder="Cep Telefonu"
-                  type="tel"
-                  id="fatherName"
-                  className="bg-primary/20 w-full px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
-                />
+                <div className="flex gap-2">
+                  <select
+                    value={phoneType}
+                    onChange={(e) => setPhoneType(e.target.value)}
+                    className="bg-primary/20 w-[140px] px-4 py-2.5 text-black rounded-3xl border-none focus:outline-none focus:ring-2 focus:ring-primary"
+                    style={{ fontWeight: 500 }}
+                  >
+                    <option value="domestic">Yurtiçi</option>
+                    <option value="international">Yurtdışı</option>
+                  </select>
+                  <input
+                    placeholder="Cep Telefonu"
+                    type="tel"
+                    id="phone"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="bg-primary/20 flex-1 px-4 py-2.5 placeholder:text-black/50 rounded-3xl text-black"
+                  />
+                </div>
               </div>
               <div className="w-[360px] flex flex-col gap-6">
-                <input
-                  placeholder="TC Kimlik No"
-                  type="number"
-                  id="tc"
-                  className="bg-black/5 w-full px-4 py-2.5 placeholder:text-black/50 rounded-2xl text-black"
-                />
+                {!isPassport ? (
+                  <input
+                    placeholder="TC Kimlik No"
+                    type="number"
+                    id="tc"
+                    className="bg-black/5 w-full px-4 py-2.5 placeholder:text-black/50 rounded-2xl text-black"
+                  />
+                ) : (
+                  <input
+                    placeholder="Pasaport No"
+                    type="text"
+                    id="passportNo"
+                    value={passportNo}
+                    onChange={(e) => setPassportNo(e.target.value)}
+                    className="bg-black/5 w-full px-4 py-2.5 placeholder:text-black/50 rounded-2xl text-black"
+                  />
+                )}
                 <input
                   placeholder="Ülke"
                   type="text"
